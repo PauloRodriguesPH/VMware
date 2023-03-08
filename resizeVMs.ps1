@@ -21,7 +21,7 @@ foreach ($item in $vmlist) {
 }   
 
 #Wait-VM-ShutDown
-Sleep -Seconds 120
+Start-Sleep -Seconds 120
 
 # Check State
 foreach ($item in $vmlist) {
