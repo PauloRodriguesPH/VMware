@@ -6,6 +6,11 @@ VM2,SQL
 VM3,APP
 #>
 
+$vcenter = "vcenter.lab.local"
+
+Import-Module -Name VMware.PowerCLI
+connect-viserver –server $vcenter
+
 #Import_VMs-List
 $vmlist = Import-CSV -Path C:\Scripts\list.csv
 
