@@ -6,13 +6,13 @@ VM002,2,2,8
 VM003,2,2,8
 #>
 
-$vcenter = "vcenter.lab.local"
+$vcenter = "slap1820.bancobmg.com.br"
 
 Import-Module -Name VMware.PowerCLI
 connect-viserver –server $vcenter
 
 #Import_VMs-List
-$vmlist = Import-CSV -Path C:\Scripts\list.csv
+$vmlist = Import-CSV -Path C:\Scripts\resize\resizeHomol.csv
 
 # Shutdown-VM
 foreach ($item in $vmlist) {
@@ -41,8 +41,9 @@ foreach ($item in $vmlist) {
     $vmname = $item.vmname
     $cpu = $item.cpu
     $cores = $item.cores
-    $mem = [int]$item.mem * 1024
-    Set-VM -VM $vmname -CoresPerSocket $cores -NumCpu $cpu -MemoryMB $mem -RunAsync -Confirm:$false
+    Set-VM -VM $vmname -CoresPerSocket $cores -NumCpu $cpu -RunAsync -Confirm:$false
+    #$mem = [int]$item.mem * 1024
+    #Set-VM -VM $vmname -CoresPerSocket $cores -NumCpu $cpu -MemoryMB $mem -RunAsync -Confirm:$false
 }
 
 #Start-VM
