@@ -2,7 +2,7 @@
 Import-Module VMware.PowerCLI
 
 # Definir o servidor vCenter e credenciais
-$vCenterServer = "slap1820.bancobmg.com.br"
+$vCenterServer = "vcenter01.lab.local"
 $vCenterUser = "paulo.rodrigues@vsphere.local"
 
 # Conectar ao vCenter Server
@@ -18,7 +18,7 @@ $vms = Import-Csv -Path $csvPath
 # Loop através de cada VM no CSV
 foreach ($vm in $vms) {
     $vmName = $vm.VMName
-    $networkName = "vPG_HML_HBT_242"
+    $networkName = "vPG_PRD_001"
 
     # Obter a VM
     $vmObject = Get-VM -Name $vmName

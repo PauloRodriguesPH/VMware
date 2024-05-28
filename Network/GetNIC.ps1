@@ -2,7 +2,7 @@
 Import-Module VMware.PowerCLI
 
 # Definir o servidor vCenter e credenciais
-$vCenterServer = "slap1820.bancobmg.com.br"
+$vCenterServer = "vcenter01.lab.local"
 $vCenterUser = "paulo.rodrigues@vsphere.local"
 
 # Conectar ao vCenter Server
