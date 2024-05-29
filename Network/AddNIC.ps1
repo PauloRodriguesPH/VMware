@@ -6,7 +6,6 @@ $vCenterServer = "vcenter01.lab.local"
 $vCenterUser = "paulo.rodrigues@vsphere.local"
 
 # Conectar ao vCenter Server
-Set-PowerCLIConfiguration -Scope User -ParticipateInCEIP $true
 Connect-VIServer -Server $vCenterServer -User $vCenterUser
 
 # Caminho para o arquivo CSV
@@ -18,7 +17,7 @@ $vms = Import-Csv -Path $csvPath
 # Loop através de cada VM no CSV
 foreach ($vm in $vms) {
     $vmName = $vm.VMName
-    $networkName = "vPG_PRD_001"
+    $networkName = "vPG_DMZ_PRD_386"
 
     # Obter a VM
     $vmObject = Get-VM -Name $vmName

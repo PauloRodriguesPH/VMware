@@ -6,7 +6,6 @@ $vCenterServer = "vcenter01.lab.local"
 $vCenterUser = "paulo.rodrigues@vsphere.local"
 
 # Conectar ao vCenter Server
-Set-PowerCLIConfiguration -Scope User -ParticipateInCEIP $true
 Connect-VIServer -Server $vCenterServer -User $vCenterUser
 
 # Caminho para o arquivo CSV
