@@ -2,11 +2,12 @@
 Import-Module VMware.PowerCLI
 
 # Definir o servidor vCenter e credenciais
-$vCenterServer = "vcenter01.lab.local"
+$vCenterServer = "vcenter.lab.local"
 $vCenterUser = "paulo.rodrigues@vsphere.local"
+$vcPassword = "P@ssw0rd"
 
-# Conectar ao vCenter Server
-Connect-VIServer -Server $vCenterServer -User $vCenterUser
+# Conectar ao vCenter Server 
+Connect-VIServer -Server $vCenterServer -User $vCenterUser -Password $vcPassword
 
 # Caminho para o arquivo CSV
 $csvPath = "U:\Scripts\lista.csv"
