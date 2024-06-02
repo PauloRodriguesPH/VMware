@@ -1,7 +1,17 @@
-﻿# Conectar ao vCenter
-$vcenterServer = "slap3047.bancobmg.com.br"
-$vcUser = "paulo.rodrigues@vsphere.local"
-$vcPassword = "Kyara.02"
+﻿<#
+Example list.csv
+path
+9edb3461-64d1-8890-570c-b02628d8d7c0/SWAP2020.vmdk
+de712a61-ecae-7415-ab0c-b02628d889e0/DWAP828_3.vmdk
+c67b1261-de9b-1350-10fa-b02628d86720/VxRail Manager_3.vmdk
+c67b1261-de9b-1350-10fa-b02628d86720/VxRail Manager_6.vmdk
+#>
+
+
+# Conectar ao vCenter
+$vCenterServer = "vcenter.lab.local"
+$vCenterUser = "paulo.rodrigues@vsphere.local"
+$vcPassword = "P@ssw0rd"
 
 # Carregar o módulo PowerCLI
 Import-Module VMware.PowerCLI
@@ -13,9 +23,9 @@ Import-Module Posh-SSH
 Connect-VIServer -Server $vcenterServer -User $vcUser -Password $vcPassword
 
 # Parâmetros
-$esxiHostName = "seap3543.bancobmg.com.br" # Nome do host ESXi
+$esxiHostName = "host01.lab.local" # Nome do host ESXi
 $sshUsername = "root" # Substitua pelo seu usuário SSH
-$sshPassword = "!nFR@VmW@reBmG2@2!" # Substitua pela sua senha SSH
+$sshPassword = "P@ssw0rd" # Substitua pela sua senha SSH
 
 # Obter o host ESXi
 $esxiHost = Get-VMHost -Name $esxiHostName
@@ -32,7 +42,7 @@ if ($esxiHost) {
 }
 
 # Criar PSDrive
-$datastore = Get-Datastore "DS_VX_SEC"
+$datastore = Get-Datastore "Datastore_001"
 New-PSDrive -Location $datastore -Name ds -PSProvider VimDatastore -Root ""
 
 # Navegar até a nova unidade
@@ -75,6 +85,9 @@ foreach ($entry in $entries) {
 
     Write-Host "--------------------------------------------"
 }
+
+# Voltar para o diretório inicial para liberar o PSDrive
+Set-Location C:\
 
 # Remover o PSDrive
 Remove-PSDrive -Name ds -Confirm:$false
